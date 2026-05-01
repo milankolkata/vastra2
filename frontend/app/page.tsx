@@ -162,7 +162,7 @@ export default function LandingPage() {
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 text-center">
           <div className="inline-flex items-center gap-2 mb-7 px-3.5 py-1.5 rounded-full bg-violet-50 border border-violet-200 text-violet-700 text-xs font-semibold tracking-wide">
             <span className="w-1.5 h-1.5 rounded-full bg-violet-500" />
-            For Retailers · Wholesalers · Manufacturers
+            For Wholesalers · Manufacturers
           </div>
 
           <h1 className="text-4xl sm:text-5xl lg:text-[60px] font-black text-slate-900 leading-[1.1] tracking-tight mb-6">
@@ -175,8 +175,11 @@ export default function LandingPage() {
           </h1>
 
           <p className="text-lg sm:text-xl text-slate-500 max-w-2xl mx-auto mb-10 leading-relaxed">
-            Upload your sales data. Know what to restock, discover city-wise leads of buyers ready
-            to purchase, and see where demand is heading — built for Indian ethnic wear businesses.
+            Upload your sales data. Know what to restock, discover{" "}
+            <span className="font-semibold text-violet-600">city-wise leads</span>{" "}
+            of buyers ready to purchase, and track where demand is heading —{" "}
+            <br className="hidden sm:block" />
+            built for Indian ethnic wear wholesalers and manufacturers.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

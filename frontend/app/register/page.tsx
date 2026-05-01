@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { Shirt, Loader2, AlertCircle, CheckCircle2 } from "lucide-react";
+import { Shirt, Loader2, AlertCircle } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 
 export default function RegisterPage() {
@@ -13,7 +13,6 @@ export default function RegisterPage() {
   const [password, setPassword]= useState("");
   const [confirm,  setConfirm] = useState("");
   const [error,    setError]   = useState("");
-  const [success,  setSuccess] = useState("");
   const [loading,  setLoading] = useState(false);
 
   useEffect(() => {
@@ -51,11 +50,19 @@ export default function RegisterPage() {
       return;
     }
 
+    // If Supabase returned a session immediately (email confirmation disabled), go straight to dashboard
     if (data.session) {
       router.push("/dashboard");
+      return;
+    }
+
+    // Email confirmation is enabled in Supabase — auto-attempt sign-in
+    const { data: signInData, error: signInError } = await supabase.auth.signInWithPassword({ email, password });
+    if (signInData?.session) {
+      router.push("/dashboard");
     } else {
-      setSuccess("Account created! Check your email to confirm your address, then sign in.");
-      setLoading(false);
+      // Email not confirmed yet — send to login with a welcome banner
+      router.push("/login?new=1");
     }
   }
 
@@ -98,20 +105,7 @@ export default function RegisterPage() {
               </div>
             )}
 
-            {success ? (
-              <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-6 text-center space-y-3">
-                <CheckCircle2 className="w-10 h-10 text-emerald-500 mx-auto" />
-                <p className="font-semibold text-emerald-800">Check your email</p>
-                <p className="text-sm text-emerald-700">{success}</p>
-                <Link
-                  href="/login"
-                  className="inline-block mt-2 text-violet-600 font-medium text-sm underline"
-                >
-                  Go to sign in
-                </Link>
-              </div>
-            ) : (
-              <form onSubmit={handleRegister} className="space-y-4">
+            <form onSubmit={handleRegister} className="space-y-4">
                 <div>
                   <label htmlFor="name" className="label-text">Full name</label>
                   <input
@@ -189,17 +183,14 @@ export default function RegisterPage() {
                     "Create account"
                   )}
                 </button>
-              </form>
-            )}
+            </form>
 
-            {!success && (
-              <p className="mt-6 text-center text-sm text-slate-500">
-                Already have an account?{" "}
-                <Link href="/login" className="text-violet-600 hover:text-violet-700 font-medium">
-                  Sign in
-                </Link>
-              </p>
-            )}
+            <p className="mt-6 text-center text-sm text-slate-500">
+              Already have an account?{" "}
+              <Link href="/login" className="text-violet-600 hover:text-violet-700 font-medium">
+                Sign in
+              </Link>
+            </p>
           </div>
         </div>
       </div>

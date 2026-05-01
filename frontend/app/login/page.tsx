@@ -1,13 +1,16 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
-import { Shirt, Loader2, AlertCircle } from "lucide-react";
+import { Shirt, Loader2, AlertCircle, CheckCircle2, Mail } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 
 export default function LoginPage() {
-  const router = useRouter();
+  const router       = useRouter();
+  const searchParams = useSearchParams();
+  const isNewAccount = searchParams.get("new") === "1";
+
   const [email,    setEmail]    = useState("");
   const [password, setPassword] = useState("");
   const [error,    setError]    = useState("");
@@ -71,6 +74,18 @@ export default function LoginPage() {
               <h1 className="text-2xl font-bold text-slate-900">Welcome back</h1>
               <p className="text-slate-500 text-sm mt-1.5">Sign in to your Vastra AI account</p>
             </div>
+
+            {isNewAccount && (
+              <div className="mb-6 bg-emerald-50 border border-emerald-200 rounded-xl p-3 text-sm text-emerald-700 flex gap-2 items-start">
+                <CheckCircle2 className="w-4 h-4 shrink-0 mt-0.5 text-emerald-500" />
+                <div>
+                  <p className="font-semibold">Account created!</p>
+                  <p className="text-emerald-600 mt-0.5 flex items-center gap-1">
+                    <Mail className="w-3 h-3" /> Check your email to verify, then sign in below.
+                  </p>
+                </div>
+              </div>
+            )}
 
             {!supabase && (
               <div className="mb-6 bg-amber-50 border border-amber-200 rounded-xl p-3 text-sm text-amber-700 flex gap-2 items-start">
