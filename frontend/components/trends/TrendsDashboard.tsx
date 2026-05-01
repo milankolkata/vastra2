@@ -467,7 +467,7 @@ export default function TrendsDashboard() {
     setBookmarks(prev => {
       const next = new Set(prev);
       next.has(id) ? next.delete(id) : next.add(id);
-      try { localStorage.setItem("vastra_bookmarks", JSON.stringify([...next])); } catch { /* noop */ }
+      try { localStorage.setItem("vastra_bookmarks", JSON.stringify(Array.from(next))); } catch { /* noop */ }
       return next;
     });
   }

@@ -13,7 +13,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
-      <body className="min-h-screen bg-gradient-to-br from-gray-50 via-purple-50/30 to-orange-50/20">
+      <body className="min-h-screen bg-slate-50 antialiased">
         {children}
       </body>
     </html>

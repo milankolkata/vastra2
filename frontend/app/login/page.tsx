@@ -3,14 +3,15 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { Shirt, Loader2, AlertCircle } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 
 export default function LoginPage() {
   const router = useRouter();
-  const [email, setEmail] = useState("");
+  const [email,    setEmail]    = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [error,    setError]    = useState("");
+  const [loading,  setLoading]  = useState(false);
 
   useEffect(() => {
     if (!supabase) return;
@@ -42,46 +43,50 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-purple-50/30 to-orange-50/20 flex flex-col">
+    <div className="min-h-screen bg-slate-50 flex flex-col">
       {/* Nav */}
       <nav className="px-6 py-4 flex items-center justify-between max-w-7xl mx-auto w-full">
         <Link href="/" className="flex items-center gap-2.5">
-          <div className="w-8 h-8 bg-gradient-to-br from-purple-600 to-orange-500 rounded-lg flex items-center justify-center text-white font-bold text-sm">
-            V
+          <div className="w-8 h-8 bg-gradient-to-br from-violet-600 to-amber-500 rounded-lg flex items-center justify-center shadow-sm">
+            <Shirt className="w-4 h-4 text-white" />
           </div>
-          <span className="font-bold text-gray-900">Vastra AI</span>
+          <span className="font-bold text-slate-900 text-[15px]">Vastra AI</span>
         </Link>
         <Link
           href="/register"
-          className="text-sm text-brand-600 hover:text-brand-700 font-medium"
+          className="text-sm text-violet-600 hover:text-violet-700 font-medium flex items-center gap-1"
         >
-          Create account →
+          Create account
         </Link>
       </nav>
 
       {/* Card */}
       <div className="flex-1 flex items-center justify-center px-4 py-12">
         <div className="w-full max-w-sm">
-          <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+          <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-8">
             <div className="mb-8 text-center">
-              <h1 className="text-2xl font-bold text-gray-900">Welcome back</h1>
-              <p className="text-gray-500 text-sm mt-1.5">Sign in to your Vastra AI account</p>
+              <div className="w-10 h-10 bg-gradient-to-br from-violet-600 to-amber-500 rounded-xl flex items-center justify-center mx-auto mb-4 shadow-sm">
+                <Shirt className="w-5 h-5 text-white" />
+              </div>
+              <h1 className="text-2xl font-bold text-slate-900">Welcome back</h1>
+              <p className="text-slate-500 text-sm mt-1.5">Sign in to your Vastra AI account</p>
             </div>
 
             {!supabase && (
-              <div className="mb-6 bg-amber-50 border border-amber-200 rounded-xl p-3 text-sm text-amber-700">
-                Auth not configured.{" "}
-                <Link href="/dashboard" className="font-semibold underline">
-                  Continue to demo →
-                </Link>
+              <div className="mb-6 bg-amber-50 border border-amber-200 rounded-xl p-3 text-sm text-amber-700 flex gap-2 items-start">
+                <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
+                <span>
+                  Auth not configured.{" "}
+                  <Link href="/dashboard" className="font-semibold underline">
+                    Continue to demo
+                  </Link>
+                </span>
               </div>
             )}
 
             <form onSubmit={handleLogin} className="space-y-4">
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1.5">
-                  Email address
-                </label>
+                <label htmlFor="email" className="label-text">Email address</label>
                 <input
                   id="email"
                   type="email"
@@ -90,14 +95,12 @@ export default function LoginPage() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="you@example.com"
-                  className="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:border-brand-400 focus:ring-2 focus:ring-brand-100 outline-none transition-all text-sm"
+                  className="input-field"
                 />
               </div>
 
               <div>
-                <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1.5">
-                  Password
-                </label>
+                <label htmlFor="password" className="label-text">Password</label>
                 <input
                   id="password"
                   type="password"
@@ -106,12 +109,13 @@ export default function LoginPage() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
-                  className="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:border-brand-400 focus:ring-2 focus:ring-brand-100 outline-none transition-all text-sm"
+                  className="input-field"
                 />
               </div>
 
               {error && (
-                <div className="bg-red-50 border border-red-200 rounded-xl p-3 text-sm text-red-600">
+                <div className="bg-red-50 border border-red-200 rounded-xl p-3 flex items-start gap-2 text-sm text-red-600">
+                  <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
                   {error}
                 </div>
               )}
@@ -119,11 +123,11 @@ export default function LoginPage() {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full btn-primary flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed"
+                className="w-full btn-primary py-3 text-sm mt-2"
               >
                 {loading ? (
                   <>
-                    <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                    <Loader2 className="w-4 h-4 animate-spin" />
                     Signing in…
                   </>
                 ) : (
@@ -132,9 +136,9 @@ export default function LoginPage() {
               </button>
             </form>
 
-            <p className="mt-6 text-center text-sm text-gray-500">
+            <p className="mt-6 text-center text-sm text-slate-500">
               Don&apos;t have an account?{" "}
-              <Link href="/register" className="text-brand-600 hover:text-brand-700 font-medium">
+              <Link href="/register" className="text-violet-600 hover:text-violet-700 font-medium">
                 Sign up
               </Link>
             </p>
