@@ -1,0 +1,223 @@
+[
+  {
+    "id": "diwali",
+    "name": "Diwali",
+    "category": "festive",
+    "month": 10,
+    "typical_day_range": [20, 31],
+    "duration_days": 5,
+    "primary_regions": ["Pan India"],
+    "secondary_regions": [],
+    "product_suggestions": [
+      "Heavy embroidered silk sarees",
+      "Bridal lehengas and festive suits",
+      "Embellished kurtis with dupatta",
+      "Gold and maroon color palette designs"
+    ],
+    "color_suggestions": ["Gold", "Maroon", "Red", "Deep Purple", "Emerald Green"],
+    "fabric_suggestions": ["Silk", "Banarasi", "Chanderi"],
+    "prep_message_30d": "Start preparing Diwali collection — your biggest sales opportunity of the year.",
+    "prep_message_15d": "Highlight festive wear prominently. Promote gift-ready packaging and combos.",
+    "prep_message_7d": "Push high-value designs via WhatsApp and Instagram. Offer fast delivery.",
+    "notes": "Biggest ethnic wear festival across India. Demand peaks 2 weeks before Diwali."
+  },
+  {
+    "id": "navratri",
+    "name": "Navratri",
+    "category": "festive",
+    "month": 10,
+    "typical_day_range": [1, 15],
+    "duration_days": 9,
+    "primary_regions": ["Gujarat", "Rajasthan", "Maharashtra"],
+    "secondary_regions": ["Delhi", "Madhya Pradesh", "Uttar Pradesh"],
+    "product_suggestions": [
+      "Chaniya choli (ghagra)",
+      "Colorful salwar suits",
+      "Bandhani and mirror-work designs",
+      "Traditional Gujarati embroidery pieces"
+    ],
+    "color_suggestions": ["Yellow", "Green", "Orange", "Pink", "White", "Blue", "Red"],
+    "fabric_suggestions": ["Bandhani", "Cotton", "Georgette", "Rayon"],
+    "prep_message_30d": "Stock Navratri-specific chaniya choli and colorful salwar suits for Gujarat and Rajasthan customers.",
+    "prep_message_15d": "Promote Navratri colors — each day has a specific color. Create color-wise collections.",
+    "prep_message_7d": "Last push — offer same-day or next-day delivery for last-minute buyers.",
+    "notes": "Nine nights of dance and celebration. Each day has a traditional color. Very high demand for chaniya choli."
+  },
+  {
+    "id": "eid_ul_fitr",
+    "name": "Eid ul-Fitr",
+    "category": "festive",
+    "month": 3,
+    "typical_day_range": [28, 31],
+    "duration_days": 3,
+    "primary_regions": ["Uttar Pradesh", "Bihar", "West Bengal", "Maharashtra", "Jammu & Kashmir"],
+    "secondary_regions": ["Delhi", "Hyderabad", "Kerala", "Karnataka"],
+    "product_suggestions": [
+      "Embroidered anarkali suits",
+      "Lucknowi chikankari kurtas",
+      "Heavy embroidered sharara sets",
+      "Pastel and white ethnic wear"
+    ],
+    "color_suggestions": ["White", "Pastel Green", "Pastel Blue", "Ivory", "Cream", "Gold"],
+    "fabric_suggestions": ["Chikankari", "Georgette", "Net", "Silk"],
+    "prep_message_30d": "Eid collection should be ready. Focus on anarkali suits, sharara sets, and chikankari.",
+    "prep_message_15d": "Promote via WhatsApp status and Instagram Reels. Share lookbooks of Eid collection.",
+    "prep_message_7d": "Urgency push — 'Get your Eid outfit now!' campaigns. Offer express delivery.",
+    "notes": "Major festive occasion. Families buy complete sets. White and pastel tones dominate."
+  },
+  {
+    "id": "durga_puja",
+    "name": "Durga Puja",
+    "category": "festive",
+    "month": 10,
+    "typical_day_range": [1, 20],
+    "duration_days": 5,
+    "primary_regions": ["West Bengal", "Odisha"],
+    "secondary_regions": ["Assam", "Delhi", "Mumbai", "Tripura"],
+    "product_suggestions": [
+      "Bengali-style cotton and silk sarees",
+      "Tant and Dhakai jamdani sarees",
+      "Red and white color combinations",
+      "Traditional Bengali prints"
+    ],
+    "color_suggestions": ["Red", "White", "Mustard", "Saffron", "Vermilion"],
+    "fabric_suggestions": ["Cotton", "Silk", "Tant", "Jamdani"],
+    "prep_message_30d": "Prepare Bengali ethnic wear and traditional sarees for Durga Puja season.",
+    "prep_message_15d": "Focus on red-white combinations and traditional Bengali styles.",
+    "prep_message_7d": "Promote Puja-special sarees and suits. Offer quick dispatch.",
+    "notes": "Biggest festival in Bengal. Multiple outfit changes across 5 days. Very high demand."
+  },
+  {
+    "id": "onam",
+    "name": "Onam",
+    "category": "festive",
+    "month": 8,
+    "typical_day_range": [20, 31],
+    "duration_days": 10,
+    "primary_regions": ["Kerala"],
+    "secondary_regions": ["Karnataka", "Tamil Nadu", "Gulf NRI communities"],
+    "product_suggestions": [
+      "Kerala kasavu sarees (cream with gold border)",
+      "White and gold salwar suits",
+      "Mundum neriyathum sets",
+      "Light cotton ethnic wear"
+    ],
+    "color_suggestions": ["White", "Cream", "Gold", "Light Yellow", "Pale Green"],
+    "fabric_suggestions": ["Cotton", "Kasavu", "Kerala Silk"],
+    "prep_message_30d": "Onam is Kerala's biggest festival. Stock kasavu sarees and white ethnic wear immediately.",
+    "prep_message_15d": "Focus marketing on Kerala customers. Promote kasavu and traditional sets.",
+    "prep_message_7d": "Final push for Onam — 'Onam Specials' campaign. Highlight light cottons and kasavu.",
+    "notes": "10-day harvest festival. Traditional white with gold border (kasavu) is the dominant look. NRI orders spike 6 weeks before."
+  },
+  {
+    "id": "pongal",
+    "name": "Pongal / Makar Sankranti",
+    "category": "festive",
+    "month": 1,
+    "typical_day_range": [13, 16],
+    "duration_days": 4,
+    "primary_regions": ["Tamil Nadu", "Andhra Pradesh", "Telangana"],
+    "secondary_regions": ["Karnataka", "Maharashtra", "Gujarat"],
+    "product_suggestions": [
+      "Silk sarees (Kanjivaram, Pochampally)",
+      "Cotton salwar suits in bright colors",
+      "Traditional South Indian ethnic wear",
+      "Pattu pavadai for girls"
+    ],
+    "color_suggestions": ["Yellow", "Green", "Orange", "Pink", "Bright Red"],
+    "fabric_suggestions": ["Kanjivaram Silk", "Cotton", "Pochampally"],
+    "prep_message_30d": "Pongal collection should include Kanjivaram silks and bright cotton sets for South India.",
+    "prep_message_15d": "Target customers in Tamil Nadu and Andhra. Promote traditional silk sarees.",
+    "prep_message_7d": "Last-minute Pongal buyers — offer express delivery and gift wrapping.",
+    "notes": "Harvest festival. Families buy silk sarees as gifts. Traditional over contemporary."
+  },
+  {
+    "id": "raksha_bandhan",
+    "name": "Raksha Bandhan",
+    "category": "festive",
+    "month": 8,
+    "typical_day_range": [10, 22],
+    "duration_days": 1,
+    "primary_regions": ["Pan India"],
+    "secondary_regions": [],
+    "product_suggestions": [
+      "Light cotton and georgette kurtis",
+      "Salwar suit sets as gifting options",
+      "Ready-to-gift packaged ethnic sets",
+      "Pastel and floral designs"
+    ],
+    "color_suggestions": ["Pastel Pink", "Light Blue", "Mint Green", "Lavender", "Peach"],
+    "fabric_suggestions": ["Cotton", "Georgette", "Rayon"],
+    "prep_message_30d": "Raksha Bandhan gifting season — create curated gift sets of ethnic wear.",
+    "prep_message_15d": "Push gifting angle — 'Gift your sister an ethnic outfit'. Promote combos and sets.",
+    "prep_message_7d": "Last-minute gift buyers. Offer gift wrapping and express delivery. Push on WhatsApp.",
+    "notes": "Major gifting occasion. Brothers buy ethnic wear for sisters. Gift packaging is key."
+  },
+  {
+    "id": "wedding_season_nov_feb",
+    "name": "Wedding Season (Nov–Feb)",
+    "category": "wedding",
+    "month": 11,
+    "typical_day_range": [1, 30],
+    "duration_days": 120,
+    "primary_regions": ["Pan India"],
+    "secondary_regions": [],
+    "product_suggestions": [
+      "Bridal lehengas and heavy embroidered sarees",
+      "Wedding guest salwar suits",
+      "Indo-western fusion wear",
+      "Family matching sets for ceremonies",
+      "Heavy work anarkali suits"
+    ],
+    "color_suggestions": ["Red", "Pink", "Maroon", "Gold", "Peach", "Royal Blue"],
+    "fabric_suggestions": ["Silk", "Velvet", "Georgette", "Net", "Bridal Lehenga"],
+    "prep_message_30d": "Wedding season is approaching — your highest-revenue period. Stock bridal and guest wear now.",
+    "prep_message_15d": "Wedding season is here! Promote bridal collections, family sets, and guest wear.",
+    "prep_message_7d": "Peak wedding season. Run targeted ads. Offer customisation and quick delivery.",
+    "notes": "Nov–Feb is India's prime wedding season. Auspicious dates cluster in November and February. Highest ticket-size sales."
+  },
+  {
+    "id": "holi",
+    "name": "Holi",
+    "category": "festive",
+    "month": 3,
+    "typical_day_range": [10, 25],
+    "duration_days": 2,
+    "primary_regions": ["Uttar Pradesh", "Rajasthan", "Delhi", "Madhya Pradesh"],
+    "secondary_regions": ["Maharashtra", "Pan India"],
+    "product_suggestions": [
+      "Affordable cotton kurtis",
+      "Light-colored comfortable suits",
+      "Printed kurta sets for celebrations",
+      "Affordable festive casual wear"
+    ],
+    "color_suggestions": ["White", "Yellow", "Pink", "Orange", "Light Colors"],
+    "fabric_suggestions": ["Cotton", "Linen", "Rayon"],
+    "prep_message_30d": "Holi brings demand for light, affordable cotton and printed ethnic wear.",
+    "prep_message_15d": "Push affordable Holi outfits. Light colors and comfortable fabrics.",
+    "prep_message_7d": "Last-minute Holi buyers — focus on affordable, quick-delivery options.",
+    "notes": "Festival of colors. Demand is for affordable, light ethnic wear that can get colorful. Not high-end."
+  },
+  {
+    "id": "eid_ul_adha",
+    "name": "Eid ul-Adha (Bakrid)",
+    "category": "festive",
+    "month": 6,
+    "typical_day_range": [5, 20],
+    "duration_days": 3,
+    "primary_regions": ["Uttar Pradesh", "Bihar", "West Bengal", "Maharashtra"],
+    "secondary_regions": ["Delhi", "Hyderabad", "Kerala", "Karnataka"],
+    "product_suggestions": [
+      "Heavy embroidered sharara sets",
+      "Formal anarkali suits",
+      "Embroidered kurta palazzo sets",
+      "Rich fabric ethnic wear"
+    ],
+    "color_suggestions": ["White", "Ivory", "Gold", "Emerald", "Royal Blue"],
+    "fabric_suggestions": ["Silk", "Georgette", "Chikankari", "Net"],
+    "prep_message_30d": "Eid ul-Adha — second major Eid. Similar demand to Eid ul-Fitr. Prepare embroidered ethnic sets.",
+    "prep_message_15d": "Focus on formal and festive ethnic wear. Promote premium collections.",
+    "prep_message_7d": "Final push for Bakrid customers. Offer express delivery and gift wrapping.",
+    "notes": "Second major Eid. Slightly less demand than Eid ul-Fitr but significant in Muslim-majority areas."
+  }
+]
