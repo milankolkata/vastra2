@@ -42,7 +42,9 @@ interface TabDef {
 }
 
 /* Pro-only tabs — free users see a gate instead of content */
-const PRO_TABS: Tab[] = ["forecast", "festivals", "customers", "leads", "trends"];
+const PRO_TABS: Tab[] = ["forecast", "festivals", "customers", "trends"];
+
+const FREE_LEADS_LIMIT = 3;
 
 const PRO_GATE_COPY: Record<string, { headline: string; sub: string }> = {
   forecast:  { headline: "30-Day Demand Forecast",      sub: "AI-powered predictions so you order the right quantity before the season peaks." },
@@ -103,13 +105,23 @@ export default function DashboardPage() {
   const [data,          setData]          = useState<UploadResponse | null>(null);
   const [mobileSidebar, setMobileSidebar] = useState(false);
   const [isPro,         setIsPro]         = useState(false);
+  const [leadsUsed,     setLeadsUsed]     = useState(0);
 
   useEffect(() => {
     checkSession();
     // Read plan from localStorage — will be replaced by Supabase user metadata after payment
     const stored = typeof window !== "undefined" ? localStorage.getItem("vastra_plan") : null;
     setIsPro(stored === "pro");
+    const usedCount = parseInt(localStorage.getItem("vastra_leads_used") ?? "0", 10);
+    setLeadsUsed(isNaN(usedCount) ? 0 : usedCount);
   }, []);
+
+  function handleLeadSearch() {
+    if (isPro) return;
+    const next = leadsUsed + 1;
+    setLeadsUsed(next);
+    localStorage.setItem("vastra_leads_used", String(next));
+  }
 
   async function checkSession() {
     if (!supabase) { setChecking(false); return; }
@@ -150,7 +162,7 @@ export default function DashboardPage() {
     { id: "trends",    label: "Trends",         icon: <Flame      className="w-4 h-4" />, group: "catalog", proOnly: true },
     { id: "designs",   label: "Designs",        icon: <Shirt      className="w-4 h-4" />, group: "catalog" },
     { id: "customers", label: "Customers",      icon: <Users      className="w-4 h-4" />, group: "catalog", proOnly: true },
-    { id: "leads",     label: "Lead Discovery", icon: <MapPin     className="w-4 h-4" />, group: "catalog", proOnly: true },
+    { id: "leads",     label: "Lead Discovery", icon: <MapPin     className="w-4 h-4" />, group: "catalog" },
   ];
 
   const salesTabs   = tabs.filter((t) => t.group === "sales");
@@ -478,7 +490,30 @@ export default function DashboardPage() {
           {activeTab === "festivals"  && isPro && <div className="animate-fade-in"><FestivalOpportunities /></div>}
           {activeTab === "trends"     && isPro && <div className="animate-fade-in"><TrendsDashboard /></div>}
           {activeTab === "customers"  && isPro && <div className="animate-fade-in"><CustomerManager /></div>}
-          {activeTab === "leads"      && isPro && <div className="animate-fade-in"><LeadDiscovery /></div>}
+          {activeTab === "leads" && (
+            <div className="animate-fade-in space-y-4">
+              {!isPro && leadsUsed >= FREE_LEADS_LIMIT ? (
+                <UpgradeGate tab="leads" />
+              ) : (
+                <>
+                  {!isPro && (
+                    <div className="bg-violet-50 border border-violet-200 rounded-xl px-4 py-3 flex items-center justify-between gap-3">
+                      <div className="flex items-center gap-2.5">
+                        <MapPin className="w-4 h-4 text-violet-600 shrink-0" />
+                        <p className="text-violet-800 text-sm font-medium">
+                          Free searches: <span className="font-bold">{leadsUsed} / {FREE_LEADS_LIMIT}</span> used
+                        </p>
+                      </div>
+                      <Link href="/#pricing" className="shrink-0 inline-flex items-center gap-1 bg-violet-600 hover:bg-violet-700 text-white text-xs font-bold px-3 py-1.5 rounded-lg transition-colors">
+                        <Crown className="w-3 h-3" /> Go Pro for unlimited
+                      </Link>
+                    </div>
+                  )}
+                  <LeadDiscovery onSearch={!isPro ? handleLeadSearch : undefined} />
+                </>
+              )}
+            </div>
+          )}
 
           {/* ── Designs — free but limited (UI note shown) ── */}
           {activeTab === "designs" && (

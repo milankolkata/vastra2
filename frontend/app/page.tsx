@@ -175,8 +175,8 @@ export default function LandingPage() {
           </h1>
 
           <p className="text-lg sm:text-xl text-slate-500 max-w-2xl mx-auto mb-10 leading-relaxed">
-            Upload your sales data. Instantly know what to buy, who to sell to, and where demand is
-            heading — whether you retail, wholesale, or manufacture ethnic wear.
+            Upload your sales data. Know what to restock, discover city-wise leads of buyers ready
+            to purchase, and see where demand is heading — built for Indian ethnic wear businesses.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

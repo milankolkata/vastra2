@@ -141,7 +141,11 @@ function exportToCSV(leads: Lead[], city: string) {
   URL.revokeObjectURL(url);
 }
 
-export default function LeadDiscovery() {
+interface LeadDiscoveryProps {
+  onSearch?: () => void;
+}
+
+export default function LeadDiscovery({ onSearch }: LeadDiscoveryProps) {
   const [city, setCity] = useState("");
   const [businessType, setBusinessType] = useState(BUSINESS_TYPES[0].value);
   const [leads, setLeads] = useState<Lead[]>([]);
@@ -160,6 +164,7 @@ export default function LeadDiscovery() {
       setLeads(result.businesses);
       setLastCity(result.city);
       setSearched(true);
+      onSearch?.();
     } catch (err: any) {
       setError(err?.response?.data?.detail || err?.message || "Search failed.");
     } finally {
