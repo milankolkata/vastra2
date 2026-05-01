@@ -25,7 +25,6 @@ export default function RegisterPage() {
   async function handleRegister(e: React.FormEvent) {
     e.preventDefault();
     setError("");
-    setSuccess("");
 
     if (!supabase) {
       setError("Supabase is not configured. Add environment variables to enable auth.");
