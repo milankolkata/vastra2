@@ -33,11 +33,23 @@ export async function getFestivalsCalendar(): Promise<Festival[]> {
 // ── Design Library ────────────────────────────────────────────
 export async function createDesign(
   file: File,
-  meta: { name: string; category: string; color: string; fabric: string; work_type: string; price: string }
+  meta: {
+    name: string;
+    category: string;
+    color: string;
+    fabric: string;
+    work_type: string;
+    embroidery_type: string;
+    print_type: string;
+    occasion_tags: string[];
+    price: string;
+  }
 ): Promise<{ design: Design; design_intelligence: any }> {
   const form = new FormData();
   form.append("file", file);
-  Object.entries(meta).forEach(([k, v]) => form.append(k, v));
+  const { occasion_tags, ...rest } = meta;
+  Object.entries(rest).forEach(([k, v]) => form.append(k, v));
+  form.append("occasion_tags", JSON.stringify(occasion_tags));
   const { data } = await API.post("/api/designs", form, {
     headers: { "Content-Type": "multipart/form-data" },
   });

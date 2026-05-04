@@ -26,7 +26,26 @@ function ScoreBar({ score }: { score: number }) {
   const color = score >= 70 ? "bg-green-400" : score >= 45 ? "bg-yellow-400" : "bg-gray-300";
   return (
     <div className="w-full bg-gray-100 rounded-full h-1.5 mt-1">
-      <div className={`h-1.5 rounded-full ${color} transition-all duration-500`} style={{ width: `${score}%` }} />
+      <div
+        className={`h-1.5 rounded-full ${color} transition-all duration-500`}
+        style={{ width: `${score}%` }}
+      />
+    </div>
+  );
+}
+
+function OccasionTags({ tags }: { tags: string[] }) {
+  if (!tags?.length) return null;
+  return (
+    <div className="flex flex-wrap gap-1 mt-1">
+      {tags.slice(0, 4).map((t) => (
+        <span
+          key={t}
+          className="text-[10px] px-1.5 py-0.5 rounded-full bg-amber-100 text-amber-700 font-medium"
+        >
+          {t}
+        </span>
+      ))}
     </div>
   );
 }
@@ -42,7 +61,10 @@ export default function DesignMatchModal({ design, open, onOpenChange }: DesignM
     setLoading(true);
     setError(null);
     getDesignMatches(design.id)
-      .then(({ matches, total_customers }) => { setMatches(matches); setTotal(total_customers); })
+      .then(({ matches, total_customers }) => {
+        setMatches(matches);
+        setTotal(total_customers);
+      })
       .catch((err) => setError(err?.response?.data?.detail || "Failed to load matches."))
       .finally(() => setLoading(false));
   }, [design, open]);
@@ -60,22 +82,44 @@ export default function DesignMatchModal({ design, open, onOpenChange }: DesignM
             Customer Matches for "{design.name}"
           </DialogTitle>
           <DialogDescription>
-            Customers whose preferences best match this design
+            Customers whose taste profile best matches this design
           </DialogDescription>
         </DialogHeader>
 
-        {/* Design thumbnail */}
-        <div className="flex items-center gap-3 bg-gray-50 rounded-xl p-3">
+        {/* Design thumbnail + rich attributes */}
+        <div className="flex items-start gap-3 bg-gray-50 rounded-xl p-3">
           {design.image_url && (
-            <img src={design.image_url} alt={design.name} className="w-14 h-14 rounded-xl object-cover flex-shrink-0" />
+            <img
+              src={design.image_url}
+              alt={design.name}
+              className="w-16 h-16 rounded-xl object-cover flex-shrink-0"
+            />
           )}
-          <div className="min-w-0">
+          <div className="min-w-0 flex-1">
             <p className="font-semibold text-sm text-gray-900 truncate">{design.name}</p>
             <div className="flex gap-1.5 flex-wrap mt-1">
-              {design.category && <span className="badge bg-purple-100 text-purple-700">{design.category}</span>}
-              {design.color && <span className="badge bg-blue-100 text-blue-700">{design.color}</span>}
-              {design.price && <span className="badge bg-green-100 text-green-700">₹{design.price}</span>}
+              {design.category && (
+                <span className="badge bg-purple-100 text-purple-700">{design.category}</span>
+              )}
+              {design.embroidery_type && (
+                <span className="badge bg-rose-100 text-rose-700">{design.embroidery_type}</span>
+              )}
+              {design.print_type && design.print_type !== "Plain / No Print" && (
+                <span className="badge bg-violet-100 text-violet-700">{design.print_type}</span>
+              )}
+              {design.fabric && (
+                <span className="badge bg-teal-100 text-teal-700">{design.fabric}</span>
+              )}
+              {design.price && (
+                <span className="badge bg-green-100 text-green-700">₹{design.price}</span>
+              )}
             </div>
+            <OccasionTags tags={design.occasion_tags || []} />
+            {design.auto_tags?.work_description && (
+              <p className="text-[10px] text-gray-400 mt-1 italic truncate">
+                {design.auto_tags.work_description}
+              </p>
+            )}
           </div>
         </div>
 
@@ -111,12 +155,17 @@ export default function DesignMatchModal({ design, open, onOpenChange }: DesignM
             {matches.length === 0 ? (
               <div className="text-center py-8">
                 <p className="text-gray-500 text-sm">No customers found. Add customers first.</p>
-                <p className="text-xs text-gray-400 mt-1">Go to the Customers tab to add your buyers.</p>
+                <p className="text-xs text-gray-400 mt-1">
+                  Go to the Customers tab to add buyers with their taste profiles.
+                </p>
               </div>
             ) : (
               <div className="space-y-3 max-h-72 overflow-y-auto pr-1">
-                {matches.map((m, i) => (
-                  <div key={m.customer_id} className="border border-gray-100 rounded-xl p-3 hover:bg-gray-50 transition-colors">
+                {matches.map((m) => (
+                  <div
+                    key={m.customer_id}
+                    className="border border-gray-100 rounded-xl p-3 hover:bg-gray-50 transition-colors"
+                  >
                     <div className="flex items-start justify-between gap-2">
                       <div className="flex items-center gap-2 min-w-0 flex-1">
                         <div className="w-8 h-8 rounded-full bg-gradient-to-br from-purple-400 to-pink-400 flex items-center justify-center text-white text-xs font-bold flex-shrink-0">
@@ -140,8 +189,17 @@ export default function DesignMatchModal({ design, open, onOpenChange }: DesignM
                       </ul>
                     )}
                     {m.whatsapp_url && (
-                      <a href={m.whatsapp_url} target="_blank" rel="noopener noreferrer" className="mt-2 inline-flex">
-                        <Button size="sm" variant="outline" className="text-green-600 border-green-200 hover:bg-green-50 h-7 text-xs gap-1">
+                      <a
+                        href={m.whatsapp_url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-2 inline-flex"
+                      >
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          className="text-green-600 border-green-200 hover:bg-green-50 h-7 text-xs gap-1"
+                        >
                           <MessageCircle className="w-3 h-3" /> Send WhatsApp
                         </Button>
                       </a>

@@ -16,9 +16,16 @@ class Settings(BaseSettings):
     # ── Trends / Image service ──
     unsplash_access_key: str = ""
 
+    # ── AI auto-tagging (Claude Vision) ──
+    anthropic_api_key: str = ""
+
     @property
     def unsplash_configured(self) -> bool:
         return bool(self.unsplash_access_key)
+
+    @property
+    def auto_tagging_enabled(self) -> bool:
+        return bool(self.anthropic_api_key)
 
     @property
     def cors_origins_list(self) -> List[str]:

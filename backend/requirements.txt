@@ -23,6 +23,9 @@ pydantic-settings==2.2.1
 Pillow>=10.3.0
 googlemaps>=4.10.0
 
+# AI auto-tagging (Claude Vision)
+anthropic>=0.40.0
+
 # Optional (comment out if causing issues)
 # sentence-transformers>=3.0.0
 # torch>=2.4.0

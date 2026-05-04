@@ -25,9 +25,18 @@ class CustomerCreate(BaseModel):
     phone: Optional[str] = None
     region_city: Optional[str] = None
     region_state: Optional[str] = None
+
+    # Basic preferences (legacy — kept for backward compat)
     preferred_categories: Optional[List[str]] = []
     preferred_styles: Optional[List[str]] = []
     color_preference: Optional[List[str]] = []
+
+    # Rich Indian wear preferences
+    embroidery_preferences: Optional[List[str]] = []   # e.g. ["Zardozi", "Chikankari"]
+    print_preferences: Optional[List[str]] = []        # e.g. ["Bandhani", "Block Print"]
+    fabric_preferences: Optional[List[str]] = []       # e.g. ["Kanjivaram Silk", "Cotton"]
+    occasion_preferences: Optional[List[str]] = []     # e.g. ["Bridal", "Festive"]
+
     price_min: Optional[float] = None
     price_max: Optional[float] = None
     notes: Optional[str] = None
@@ -102,7 +111,6 @@ async def add_customer_image(customer_id: str, file: UploadFile = File(...)):
     if len(image_bytes) > 5 * 1024 * 1024:
         raise HTTPException(413, "Image must be under 5 MB.")
 
-    # Upload to Supabase Storage
     ext = (file.filename or "image.jpg").rsplit(".", 1)[-1]
     storage_path = f"{customer_id}/{uuid.uuid4()}.{ext}"
     try:
@@ -115,7 +123,6 @@ async def add_customer_image(customer_id: str, file: UploadFile = File(...)):
     except Exception as exc:
         raise HTTPException(502, f"Storage upload failed: {exc}")
 
-    # Generate embedding
     embedding = embed_image(image_bytes)
 
     try:

@@ -147,6 +147,15 @@ export interface AutoColor {
   percentage: number;
 }
 
+export interface AutoTags {
+  embroidery_type: string | null;
+  print_type: string | null;
+  fabric_hint: string | null;
+  occasion_tags: string[];
+  work_description: string | null;
+  confidence: "high" | "medium" | "low" | null;
+}
+
 export interface Design {
   id: string;
   name: string;
@@ -154,9 +163,13 @@ export interface Design {
   color: string | null;
   fabric: string | null;
   work_type: string | null;
+  embroidery_type: string | null;
+  print_type: string | null;
+  occasion_tags: string[];
   price: number | null;
   image_url: string;
   auto_colors: AutoColor[] | null;
+  auto_tags: AutoTags | null;
   created_at: string;
 }
 
@@ -166,6 +179,9 @@ export interface DesignCreatePayload {
   color: string;
   fabric: string;
   work_type: string;
+  embroidery_type: string;
+  print_type: string;
+  occasion_tags: string[];
   price: string;
 }
 
@@ -176,9 +192,18 @@ export interface Customer {
   phone: string | null;
   region_city: string | null;
   region_state: string | null;
+
+  // Legacy fields (still used)
   preferred_categories: string[];
   preferred_styles: string[];
   color_preference: string[];
+
+  // Rich Indian wear preferences
+  embroidery_preferences: string[];
+  print_preferences: string[];
+  fabric_preferences: string[];
+  occasion_preferences: string[];
+
   price_min: number | null;
   price_max: number | null;
   notes: string | null;
